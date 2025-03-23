@@ -28,13 +28,13 @@
             left: 50%;
             transform: translateX(-50%);
             color: blue;
-            font-size: 11px;
+            font-size: 18px;
             background: rgba(255,255,255,0.5);
             padding: 10px 20px;
             border-radius: 10px;
             margin-top: 230px;
             font-weight: bold;
-            display: none; /* শুরুতে লুকানো */
+            display: none;
         }
     </style>
 </head>
@@ -42,7 +42,7 @@
     <div class="container">
         <h1 id="text"></h1>
         <video id="video" autoplay muted loop>
-            <source src="Gift/Gift-2.mp4" type="video/mp4">
+            <source src="Gift-2.mp4" type="video/mp4">
         </video>
     </div>
 
@@ -50,18 +50,25 @@
         let textElement = document.getElementById("text");
         let video = document.getElementById("video");
 
-        // ইউজারের কাছ থেকে নাম ইনপুট নেওয়া
-        let userText = prompt("আপনার নাম লিখুন:");
-        if (userText && userText.trim() !== "") {
-            textElement.textContent = "ঈদ মোবারক " + userText;
+        // Function to get query parameters from URL
+        function getQueryParam(param) {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Get user name from URL parameter
+        let userName = getQueryParam("name");
+
+        if (userName && userName.trim() !== "") {
+            textElement.textContent = "ঈদ মোবারক " + decodeURIComponent(userName);
         } else {
-            textElement.textContent = "ঈদ মোবারক প্রিয় বন্ধু"; // যদি ইউজার কিছু না দেয়
+            textElement.textContent = "ঈদ মোবারক প্রিয় বন্ধু"; // Default if no name is provided
         }
 
         function showText() {
             setTimeout(() => {
                 textElement.style.display = "block";
-            }, 5000); // ৩ সেকেন্ড পরে h1 দেখাবে
+            }, 5000);
         }
 
         video.addEventListener("play", showText);
