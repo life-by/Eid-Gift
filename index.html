@@ -9,7 +9,6 @@
         body {
             margin: 0;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -27,7 +26,7 @@
         }
         h1 {
             position: absolute;
-            top: 11px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
             color: blue;
@@ -40,10 +39,11 @@
             display: none;
         }
         .ad-banner {
-            width: 728px;
-            height: 90px;
-            margin-top: 10px;
-            text-align: center;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 160px;
+            height: 600px;
         }
     </style>
 </head>
@@ -59,14 +59,14 @@
         </video>
     </div>
     
-    <!-- Banner Ad Below Video -->
+    <!-- Banner Ad -->
     <div class="ad-banner">
         <script type="text/javascript">
             atOptions = {
                 'key' : '04891fac45e988a98821e75eea784b88',
                 'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
+                'height' : 600,
+                'width' : 160,
                 'params' : {}
             };
         </script>
