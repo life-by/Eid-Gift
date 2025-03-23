@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type='text/javascript' src='//pl23902783.effectiveratecpm.com/e2/26/e1/e226e143fcb56fe249847c2d6c483289.js'></script>
+    
     <title>Gift</title>
     <style>
         body {
             margin: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -38,10 +39,19 @@
             font-weight: bold;
             display: none;
         }
-
+        .ad-banner {
+            width: 728px;
+            height: 90px;
+            margin-top: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Popunder Ad -->
+    <script type='text/javascript' src='//pl23902783.effectiveratecpm.com/e2/26/e1/e226e143fcb56fe249847c2d6c483289.js'></script>
+
     <div class="container">
         <h1 id="text"></h1>
         <video id="video" autoplay muted loop>
@@ -49,8 +59,18 @@
         </video>
     </div>
     
-    <div class="ad-container">
-        <script type="text/javascript" src="//www.highperformanceformat.com/641375cf3d64a0021397b6d4ba855e98/invoke.js"></script>
+    <!-- Banner Ad Below Video -->
+    <div class="ad-banner">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '04891fac45e988a98821e75eea784b88',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/04891fac45e988a98821e75eea784b88/invoke.js"></script>
     </div>
 
     <script>
@@ -68,7 +88,7 @@
         function showText() {
             setTimeout(() => {
                 textElement.style.display = "block";
-            }, 5000); // ৩ সেকেন্ড পরে h1 দেখাবে
+            }, 5000); // ৫ সেকেন্ড পরে h1 দেখাবে
         }
 
         video.addEventListener("play", showText);
