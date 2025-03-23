@@ -47,28 +47,26 @@
     </div>
 
     <script>
-        let textElement = document.getElementById("text");
-        let video = document.getElementById("video");
-
-        // Function to get query parameters from URL
         function getQueryParam(param) {
             let urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
 
-        // Get user name from URL parameter
+        let textElement = document.getElementById("text");
+        let video = document.getElementById("video");
+
         let userName = getQueryParam("name");
 
         if (userName && userName.trim() !== "") {
             textElement.textContent = "ঈদ মোবারক " + decodeURIComponent(userName);
         } else {
-            textElement.textContent = "ঈদ মোবারক প্রিয় বন্ধু"; // Default if no name is provided
+            textElement.textContent = "ঈদ মোবারক প্রিয় বন্ধু";
         }
 
         function showText() {
             setTimeout(() => {
                 textElement.style.display = "block";
-            }, 5000);
+            }, 3000);
         }
 
         video.addEventListener("play", showText);
