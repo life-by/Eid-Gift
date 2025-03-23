@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gift</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: gray;
+        }
+        .container {
+            position: relative;
+            width: 400px;
+            height: 700px;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+        }
+        h1 {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: blue;
+            font-size: 11px;
+            background: rgba(255,255,255,0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-top: 230px;
+            font-weight: bold;
+            display: none; /* শুরুতে লুকানো */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="text"></h1>
+        <video id="video" autoplay muted loop>
+            <source src="Gift/Gift-2.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script>
+        let textElement = document.getElementById("text");
+        let video = document.getElementById("video");
+
+        // ইউজারের কাছ থেকে নাম ইনপুট নেওয়া
+        let userText = prompt("আপনার নাম লিখুন:");
+        if (userText && userText.trim() !== "") {
+            textElement.textContent = "ঈদ মোবারক " + userText;
+        } else {
+            textElement.textContent = "ঈদ মোবারক প্রিয় বন্ধু"; // যদি ইউজার কিছু না দেয়
+        }
+
+        function showText() {
+            setTimeout(() => {
+                textElement.style.display = "block";
+            }, 5000); // ৩ সেকেন্ড পরে h1 দেখাবে
+        }
+
+        video.addEventListener("play", showText);
+
+        video.addEventListener("ended", () => {
+            textElement.style.display = "none";
+        });
+
+        video.addEventListener("timeupdate", () => {
+            if (video.currentTime < 0.5) {
+                textElement.style.display = "none";
+                showText();
+            }
+        });
+    </script>
+</body>
+</html>
