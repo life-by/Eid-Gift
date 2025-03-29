@@ -38,7 +38,6 @@
             font-weight: bold;
             display: none;
         }
-        
     </style>
 </head>
 <body>
@@ -50,11 +49,14 @@
         </video>
     </div>
 
-    
+    <audio id="audio" loop>
+        <source src="back.mp3" type="audio/mp3">
+    </audio>
 
     <script>
         let textElement = document.getElementById("text");
         let video = document.getElementById("video");
+        let audio = document.getElementById("audio");
 
         // ইউজারের কাছ থেকে নাম ইনপুট নেওয়া
         let userText = prompt("আপনার নাম লিখুন:");
@@ -70,7 +72,10 @@
             }, 5000); // ৫ সেকেন্ড পরে h1 দেখাবে
         }
 
-        video.addEventListener("play", showText);
+        video.addEventListener("play", () => {
+            audio.play(); // ভিডিও শুরু হলে অডিও শুরু হবে
+            showText();
+        });
 
         video.addEventListener("ended", () => {
             textElement.style.display = "none";
