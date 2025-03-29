@@ -93,16 +93,24 @@
         let audio = document.getElementById("audio");
 
         function startGift() {
-            popup.style.display = "none"; // পপআপ লুকিয়ে ফেলবে
+            popup.style.display = "none"; // পপআপ লুকাবে
             content.style.display = "block"; // মেইন কন্টেন্ট দেখাবে
             video.play(); // ভিডিও চালাবে
             audio.play(); // ব্যাকগ্রাউন্ড মিউজিক চালাবে
         }
 
-        // ইউজারের কাছ থেকে নাম ইনপুট নেওয়া
-        let userText = prompt("আপনার নাম লিখুন:");
-        if (userText && userText.trim() !== "") {
-            textElement.textContent = "ঈদ মোবারক " + userText;
+        // **🔥 URL থেকে নাম ইনপুট নেওয়ার ফাংশন**
+        function getQueryParam(param) {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // **🔥 URL থেকে "name" বের করা**
+        let userName = getQueryParam("name");
+
+        // **🔥 h1-এ নাম সেট করা**
+        if (userName && userName.trim() !== "") {
+            textElement.textContent = "ঈদ মোবারক " + userName;
         } else {
             textElement.textContent = "ঈদ মোবারক প্রিয় বন্ধু";
         }
