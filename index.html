@@ -97,7 +97,6 @@
             content.style.display = "block"; // মেইন কন্টেন্ট দেখাবে
             video.play(); // ভিডিও চালাবে
             audio.play(); // ব্যাকগ্রাউন্ড মিউজিক চালাবে
-            showText(); // ৫ সেকেন্ড পর h1 দেখাবে
         }
 
         // ইউজারের কাছ থেকে নাম ইনপুট নেওয়া
@@ -109,21 +108,19 @@
         }
 
         function showText() {
-            setTimeout(() => {
-                textElement.style.display = "block"; // ৫ সেকেন্ড পর h1 ট্যাগ দেখাবে
-            }, 5000);
+            textElement.style.display = "block"; // h1 ট্যাগ দেখাবে
         }
 
-        // ভিডিও শেষ হলে h1 লুকিয়ে ফেলা হবে
-        video.addEventListener("ended", () => {
-            textElement.style.display = "none"; // ভিডিও শেষ হলে h1 লুকিয়ে ফেলবে
+        function hideText() {
+            textElement.style.display = "none"; // h1 ট্যাগ লুকিয়ে ফেলবে
+        }
+
+        video.addEventListener("play", () => {
+            hideText(); // প্রথমে লুকাবে
+            setTimeout(showText, 5000); // ৫ সেকেন্ড পর দেখাবে
         });
 
-        // ভিডিও আবার শুরু হলে পুনরায় ৫ সেকেন্ড পর h1 দেখাবে
-        video.addEventListener("play", () => {
-            textElement.style.display = "none"; // প্রথমে লুকিয়ে ফেলবে
-            showText(); // ৫ সেকেন্ড পর আবার দেখাবে
-        });
+        video.addEventListener("ended", hideText); // ভিডিও শেষ হলে লুকাবে
 
     </script>
 </body>
