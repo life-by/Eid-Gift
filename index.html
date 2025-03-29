@@ -19,6 +19,7 @@
             position: relative;
             width: 400px;
             height: 700px;
+            display: none; /* শুরুতে লুকানো থাকবে */
         }
         video {
             width: 100%;
@@ -38,13 +39,44 @@
             font-weight: bold;
             display: none;
         }
+        /* পপআপ বোতামের স্টাইল */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup button {
+            background: gold;
+            color: black;
+            font-size: 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .popup button:hover {
+            background: orange;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- পপআপ -->
+    <div class="popup" id="popup">
+        <button onclick="startGift()">🎁 Gift Open</button>
+    </div>
+
+    <!-- মেইন কন্টেন্ট -->
+    <div class="container" id="content">
         <h1 id="text"></h1>
-        <video id="video" autoplay muted loop>
+        <video id="video" muted loop>
             <source src="gift-2.mp4" type="video/mp4">
         </video>
     </div>
@@ -54,39 +86,33 @@
     </audio>
 
     <script>
+        let popup = document.getElementById("popup");
+        let content = document.getElementById("content");
         let textElement = document.getElementById("text");
         let video = document.getElementById("video");
         let audio = document.getElementById("audio");
+
+        function startGift() {
+            popup.style.display = "none"; // পপআপ লুকিয়ে ফেলবে
+            content.style.display = "block"; // মেইন কন্টেন্ট দেখাবে
+            video.play(); // ভিডিও চালাবে
+            audio.play(); // ব্যাকগ্রাউন্ড মিউজিক চালাবে
+            showText();
+        }
 
         // ইউজারের কাছ থেকে নাম ইনপুট নেওয়া
         let userText = prompt("আপনার নাম লিখুন:");
         if (userText && userText.trim() !== "") {
             textElement.textContent = "ঈদ মোবারক " + userText;
         } else {
-            textElement.textContent = "ঈদ মোবারক প্রিয় বন্ধু"; // যদি ইউজার কিছু না দেয়
+            textElement.textContent = "ঈদ মোবারক প্রিয় বন্ধু";
         }
 
         function showText() {
             setTimeout(() => {
                 textElement.style.display = "block";
-            }, 5000); // ৫ সেকেন্ড পরে h1 দেখাবে
+            }, 5000);
         }
-
-        video.addEventListener("play", () => {
-            audio.play(); // ভিডিও শুরু হলে অডিও শুরু হবে
-            showText();
-        });
-
-        video.addEventListener("ended", () => {
-            textElement.style.display = "none";
-        });
-
-        video.addEventListener("timeupdate", () => {
-            if (video.currentTime < 0.5) {
-                textElement.style.display = "none";
-                showText();
-            }
-        });
     </script>
 </body>
 </html>
